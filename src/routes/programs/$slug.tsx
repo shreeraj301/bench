@@ -9,7 +9,7 @@ export const Route = createFileRoute("/programs/$slug")({
     return {
       meta: [
         {
-          title: program ? `${program.shortName} — Bench` : "Program — Bench",
+          title: program ? `${program.shortName}: Bench` : "Program: Bench",
         },
       ],
     };

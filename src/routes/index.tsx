@@ -18,7 +18,7 @@ function Home() {
           <p className="eyebrow">Working rank · product design from India</p>
           <h1 className="display-xl mt-4">Six programs. One decision that survives the brochure.</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-body">
-            Carnegie Mellon, Georgia Tech, Berkeley, Washington, Michigan, and UT Austin — cost, outcomes,
+            Carnegie Mellon, Georgia Tech, Berkeley, Washington, Michigan, and UT Austin: cost, outcomes,
             curriculum, and a visa prior you can argue with. Updated {UPDATED}.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -57,7 +57,7 @@ function Home() {
         </div>
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {[
-            "You want product design, with UX research and PM as adjacent doors — not a generic “tech master’s.”",
+            "You want product design, with UX research and PM as adjacent doors, not a generic “tech master’s.”",
             "You will attend on an F-1, need STEM OPT, and cannot pretend every design studio sponsors.",
             "Cost matters. It does not outrank a degree that leaves your portfolio where it is.",
           ].map((line) => (

@@ -3,7 +3,7 @@ import { Shell } from "@/components/shell";
 import { UPDATED, programs } from "@/data/programs";
 
 export const Route = createFileRoute("/guide")({
-  head: () => ({ meta: [{ title: "Application guide — Bench" }] }),
+  head: () => ({ meta: [{ title: "Application guide: Bench" }] }),
   component: GuidePage,
 });
 

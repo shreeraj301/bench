@@ -38,7 +38,7 @@ export const INDEX_META: {
     key: "jobSecurity",
     label: "Job Security",
     definition:
-      "Strength of a path into product design, UX research, or product management — brand, network, internship conversion, and where alumni actually land.",
+      "Strength of a path into product design, UX research, or product management: brand, network, internship conversion, and where alumni actually land.",
     criteria: [
       "Placement into PD, UXR, and PM rather than ‘a job’",
       "Alumni density inside hiring companies",
@@ -129,7 +129,7 @@ export const programs: Program[] = [
     ],
     curriculum: {
       summary:
-        "Seven core courses and four electives. Full-time study is at least 36 units a semester. Most courses are 9 or 12 units. Electives can be taken across Carnegie Mellon, which is the actual flexibility — not a menu of unnamed ‘design tracks.’",
+        "Seven core courses and four electives. Full-time study is at least 36 units a semester. Most courses are 9 or 12 units. Electives can be taken across Carnegie Mellon, which is the actual flexibility, not a menu of unnamed ‘design tracks.’",
       points: [
         "Core covers the professional-practice spine: research, design, and the technical judgment to ship.",
         "AI literacy is claimed in the program overview as part of the curriculum, not a concentration you might reach later.",
@@ -142,7 +142,7 @@ export const programs: Program[] = [
         "The capstone is two courses: HCI Project I in spring (15 units) and HCI Project II in summer (48 units). Teams of four to six students partner with an external sponsor for about seven months, from discovery through a tested prototype or, sometimes, an MVP.",
       points: [
         "Faculty mentor plus a real client. Alumni routinely call it the hardest and most useful part of the year.",
-        "Deliverables are research, product strategy, and a functional prototype — the portfolio piece you will actually show.",
+        "Deliverables are research, product strategy, and a functional prototype. The portfolio piece you will actually show.",
         "The summer unit load is the intensity signal. Do not plan a separate full-time internship on top of Project II.",
         "Sponsors vary by year. The brand of the capstone is the process, not a guaranteed Google project.",
       ],
@@ -306,7 +306,7 @@ export const programs: Program[] = [
     overview: [
       "MS-HCI is a joint professional program across four schools. You apply to one track: Interactive Computing, Industrial Design, Literature, Media, and Communication, or Psychology. You are admitted to one.",
       "The FAQ is blunt about time: four semesters, with a required internship in the summer between semester two and semester three. Enter in the fall, graduate in the spring a year and a half later.",
-      "It is the right program when you want range — a psychologist’s methods, a designer’s studio, a computing department’s technical courses — and you are willing to choose a home school instead of sampling all of them.",
+      "It is the right program when you want range (a psychologist’s methods, a designer’s studio, a computing department’s technical courses) and you are willing to choose a home school instead of sampling all of them.",
     ],
     excels: [
       "Required summer internship, which is the strongest structured bridge to a job in this set",
@@ -322,7 +322,7 @@ export const programs: Program[] = [
     ],
     curriculum: {
       summary:
-        "Track-based. Interactive Computing is the closest thing to a classic HCI + technical degree. Industrial Design is the studio and form track. Psychology is the research-methods track. LMC sits in media and communication. Cores and electives differ by home school. Confirm the current degree worksheet before you apply — credit totals are not identical in every retelling.",
+        "Track-based. Interactive Computing is the closest thing to a classic HCI + technical degree. Industrial Design is the studio and form track. Psychology is the research-methods track. LMC sits in media and communication. Cores and electives differ by home school. Confirm the current degree worksheet before you apply. Credit totals are not identical in every retelling.",
       points: [
         "Community and collaboration are part of the admissions brief because the program actually runs that way.",
         "International students on F-1 must take at least 12 credits, except a possible final-semester reduction to 6.",
@@ -375,7 +375,7 @@ export const programs: Program[] = [
       ],
       total: "$115,000–$130,000 before a paid internship",
       totalNote:
-        "A paid summer internship is the number that makes this ROI work. Model it as income, not as a guarantee. Assistantships, if you get one, change the tuition line sharply — the GRA table is a different, much lower rate.",
+        "A paid summer internship is the number that makes this ROI work. Model it as income, not as a guarantee. Assistantships, if you get one, change the tuition line sharply. The GRA table is a different, much lower rate.",
     },
     funding: {
       summary:
@@ -401,13 +401,13 @@ export const programs: Program[] = [
       ],
       sop: {
         type: "Statement of Purpose",
-        limit: "About 1,000 words — confirm on the form",
+        limit: "About 1,000 words. Confirm on the form",
         strategy: [
           "Give one full paragraph to how you work with other people. The program asks for community because the degree is joint and studio-heavy. A solo-genius essay is a miss.",
           "Name the track in the first page and defend it. ‘I like all of HCI’ reads as ‘I did not read the site.’",
           "If you have undergraduate studio, research-lab, or shipped-product experience, describe one collaboration with a specific conflict and what changed in the work.",
           "Interactive Computing applicants should show they can handle technical courses without pretending to be CS graduate students. Psychology applicants should show methods, not only mockups.",
-          "Industrial Design applicants have an extra prompt about why that track. Answer it with form, materials, and users — not with a software-only story.",
+          "Industrial Design applicants have an extra prompt about why that track. Answer it with form, materials, and users, not with a software-only story.",
         ],
       },
     },
@@ -497,7 +497,7 @@ export const programs: Program[] = [
     rankReason:
       "First choice if the target role is product management or a technical product seat. Third here because a product-design portfolio is not what the degree is built to produce.",
     overview: [
-      "MIMS is a two-year, full-time, STEM-designated professional master’s at the School of Information. The school’s own line is AI, UX, data, and ethical technology — in that mix, not with UX in front.",
+      "MIMS is a two-year, full-time, STEM-designated professional master’s at the School of Information. The school’s own line is AI, UX, data, and ethical technology, in that mix, not with UX in front.",
       "The target class is about 50–70 people. The published class profile is experienced: average GPA 3.57, average 5 years of work, average age 25, average TOEFL 111. This is not a program for a thin academic record and a hopeful portfolio.",
       "You are buying the Bay Area hiring calendar and a curriculum that treats information systems, policy, and product judgment as one subject. If you want daily studio crits, Washington is the more honest pick.",
     ],
@@ -515,7 +515,7 @@ export const programs: Program[] = [
     ],
     curriculum: {
       summary:
-        "A flexible professional curriculum across UX, data, AI, security, policy, and management. You design a focus. The school expects you to leave with projects, not only courses. Final degree requirements should be read on the current MIMS curriculum page — concentrations shift names.",
+        "A flexible professional curriculum across UX, data, AI, security, policy, and management. You design a focus. The school expects you to leave with projects, not only courses. Final degree requirements should be read on the current MIMS curriculum page. Concentrations shift names.",
       points: [
         "Product sense is taught next to data and engineering-adjacent courses. That is the PM advantage.",
         "UX research and interaction design are normal paths, not the default identity of the cohort.",
@@ -596,11 +596,11 @@ export const programs: Program[] = [
       ],
       sop: {
         type: "Statement of Purpose + Personal History",
-        limit: "500–1,000 words each — confirm on the form",
+        limit: "500–1,000 words each. Confirm on the form",
         strategy: [
           "The strategic question to answer: how you will advance the future of technology and design engineering. Berkeley wants a point of view about systems, not a tour of your Dribbble.",
           "Split the documents. The statement is the professional bet: problem, skills, why MIMS, what you will do in the Bay. The personal history is context, not a second statement with the nouns swapped.",
-          "Name the kind of product work — PM, UX research, data-adjacent design — and the course area that supports it. ‘I want to keep my options open’ is expensive at this tuition.",
+          "Name the kind of product work (PM, UX research, data-adjacent design) and the course area that supports it. ‘I want to keep my options open’ is expensive at this tuition.",
           "If you are a designer, show that you can talk to engineers and data people. The cohort will. An essay that avoids anything technical reads as a poor fit.",
           "Five years is the average experience, not a minimum. If you have less, show scope: users, constraints, a decision you owned.",
         ],
@@ -688,7 +688,7 @@ export const programs: Program[] = [
     overview: [
       "MHCI+D is a fee-based, self-sustaining STEM master’s. Tuition is the same for residents, nonresidents, and international students, charged per credit. The apply page lists a 46-credit minimum.",
       "The culture is studio and critique. You are there to make, test, and iterate in a cohort, not to sample an entire information school.",
-      "Seattle is the point. Amazon, Microsoft, and a thick layer of product teams recruit here. A one-year clock means you interview on the work you brought plus the work you make in autumn and winter — not on a summer return offer.",
+      "Seattle is the point. Amazon, Microsoft, and a thick layer of product teams recruit here. A one-year clock means you interview on the work you brought plus the work you make in autumn and winter, not on a summer return offer.",
     ],
     excels: [
       "Studio craft and human-centered making",
@@ -796,7 +796,7 @@ export const programs: Program[] = [
       employers: [
         "Seattle-area product companies, including Amazon and Microsoft alumni pipelines",
         "West Coast product teams",
-        "Studios — with the usual visa caveat",
+        "Studios, with the usual visa caveat",
       ],
       points: [
         "You are hiring into design. PM is possible and not the program’s center.",
@@ -870,7 +870,7 @@ export const programs: Program[] = [
     officialUrl: "https://www.si.umich.edu/programs/degree-programs/master-science-information",
     tagline: "A large, well-run information degree with real UX and a new PM pathway. The outcome PDF is not a UX outcome PDF.",
     rankReason:
-      "Right school if you want research methods, a flexible UX path, or the new product-management pathway — and you will read the employment report carefully. The sticker is Berkeley-shaped without the Bay Area median.",
+      "Right school if you want research methods, a flexible UX path, or the new product-management pathway, and you will read the employment report carefully. The sticker is Berkeley-shaped without the Bay Area median.",
     overview: [
       "The MSI at the School of Information is a two-year professional degree on North Campus in Ann Arbor. Pathways include User Experience Research and Design, User-Centered Application Development, Product Management (new for students entering fall 2026), Information and Data Analytics, and a libraries and archives path.",
       "No GRE. Recommended undergraduate GPA is 3.0. The school is large: 358 MSI graduates in 2025. You can disappear into the size, or you can use it.",
@@ -894,7 +894,7 @@ export const programs: Program[] = [
       points: [
         "You must pick a pathway with intent. The degree’s flexibility is also how people graduate undifferentiated.",
         "Research training is a genuine advantage if your portfolio is currently ‘screens only.’",
-        "AI shows up as a skill employers asked for in the 2026 outcomes coverage — hybrid roles such as UX strategist and AI UX designer — not as a guarantee every section teaches it.",
+        "AI shows up as a skill employers asked for in the 2026 outcomes coverage (hybrid roles such as UX strategist and AI UX designer), not as a guarantee every section teaches it.",
         "Confirm STEM OPT against the CIP code on the I-20. Do not assume a pathway name prints STEM on the visa document.",
       ],
     },
@@ -967,7 +967,7 @@ export const programs: Program[] = [
       ],
       sop: {
         type: "Statement of Purpose + Personal Statement",
-        limit: "About 1–2 pages and about 500 words — confirm",
+        limit: "About 1–2 pages and about 500 words. Confirm",
         strategy: [
           "Split the narrative. The SOP carries the professional goal: design engineering, UXR, or PM, and the pathway that matches. The personal statement carries how you got here. Overlap reads as padding.",
           "Name courses or the collaboration studio only if you can say what you will do there. ‘UMSI is interdisciplinary’ is not a reason.",
@@ -981,7 +981,7 @@ export const programs: Program[] = [
       summary:
         "Class of 2025, reported in the 2026 MSI employment report: 88% employment among respondents, $91,000 average salary ($95,000 private sector, $103,000 in technology, $64,000 public or nonprofit), 90% of respondents highly satisfied. 358 graduates, 52% response. Average search was three to four months. 45% stayed in Michigan, 11% California, 11% New York. Top industries: technology 31%, universities 14%, consulting 7%, health 7%.",
       searchTime: "3–4 months average for MSI graduates in the class of 2025 report. International UX searches are not broken out.",
-      roles: ["UX researcher", "Product designer", "UX strategist", "Product manager", "Also librarians, analysts, and consultants — the report is the whole school"],
+      roles: ["UX researcher", "Product designer", "UX strategist", "Product manager", "Also librarians, analysts, and consultants. The report is the whole school"],
       employers: [
         "Microsoft, Adobe, Amazon, IBM",
         "Accenture, Deloitte, JPMorgan Chase, Epic",
@@ -1065,7 +1065,7 @@ export const programs: Program[] = [
     overview: [
       "MSIS is a two-year, in-person, STEM-designated master’s at the School of Information. The degree is 36 semester hours: a core, 30 hours of electives, and a capstone. Full-time is nine hours. Fall admission only.",
       "Study areas include Human-Computer Interaction, User Experience Research and Design, and Human-Centered AI and Data Science, alongside health, security, archives, and librarianship. The flexibility is the product. It is also the risk.",
-      "Austin is a real tech market — headquarters, satellite offices, and startups — without the single-school mythology of CMU or the Bay Area density of Berkeley.",
+      "Austin is a real tech market (headquarters, satellite offices, and startups) without the single-school mythology of CMU or the Bay Area density of Berkeley.",
     ],
     excels: [
       "Lowest published tuition in this set for nonresidents",
@@ -1158,10 +1158,10 @@ export const programs: Program[] = [
       ],
       sop: {
         type: "Statement of Purpose",
-        limit: "About 1–2 pages — confirm",
+        limit: "About 1–2 pages. Confirm",
         strategy: [
           "Write about information environments and interactive systems, not a generic design-school dream. The degree lives in an iSchool. Show you understand that.",
-          "Name the study area — HCI, UX research and design, or human-centered AI — in the first half. Flexibility without a target looks like you want a two-year visa more than a curriculum.",
+          "Name the study area (HCI, UX research and design, or human-centered AI) in the first half. Flexibility without a target looks like you want a two-year visa more than a curriculum.",
           "One project is enough if it shows a user, a system, and a decision. A second project should change the picture, not repeat it.",
           "Austin can be a sentence about the kind of industry context you want. Do not spend the page on breakfast tacos or ‘the live music capital.’",
           "If you are changing careers, say what you will stop doing as well as what you will start. The elective menu punishes people who arrive without a cut line.",

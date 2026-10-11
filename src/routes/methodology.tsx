@@ -3,7 +3,7 @@ import { Shell } from "@/components/shell";
 import { INDEX_META, UPDATED, VISA_NOTE } from "@/data/programs";
 
 export const Route = createFileRoute("/methodology")({
-  head: () => ({ meta: [{ title: "Indices methodology — Bench" }] }),
+  head: () => ({ meta: [{ title: "Indices methodology: Bench" }] }),
   component: MethodologyPage,
 });
 
@@ -19,9 +19,9 @@ function MethodologyPage() {
             the top of this short list, with the caveat written under the bar.”
           </p>
           <p>
-            Official figures — tuition tables, published admit rates, employment reports, deadlines — are
-            marked on each program page and linked. Estimates — city living bands, workload hours, visa
-            ranges, search times where a school does not print one — are labeled Estimate or described as
+            Official figures (tuition tables, published admit rates, employment reports, deadlines) are
+            marked on each program page and linked. Estimates (city living bands, workload hours, visa
+            ranges, search times where a school does not print one) are labeled Estimate or described as
             planning bands. If a number is not on this site, it is because the school did not publish it in
             a source we were willing to cite.
           </p>

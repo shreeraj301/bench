@@ -3,7 +3,7 @@ import { Shell } from "@/components/shell";
 import { INDEX_META } from "@/data/programs";
 
 export const Route = createFileRoute("/framework")({
-  head: () => ({ meta: [{ title: "Decision framework — Bench" }] }),
+  head: () => ({ meta: [{ title: "Decision framework: Bench" }] }),
   component: FrameworkPage,
 });
 
@@ -34,7 +34,7 @@ const scenarios = [
   },
   {
     title: "The visa is the constraint",
-    body: "Bias toward STEM-designated degrees — confirm the CIP on the I-20, especially at Michigan — and toward employers that have sponsored before. Berkeley’s range is the highest prior in this set because PM and engineering-adjacent roles sponsor more often than design studios. A beautiful portfolio aimed only at studios is a weak visa plan at every school, including CMU.",
+    body: "Bias toward STEM-designated degrees (confirm the CIP on the I-20, especially at Michigan) and toward employers that have sponsored before. Berkeley’s range is the highest prior in this set because PM and engineering-adjacent roles sponsor more often than design studios. A beautiful portfolio aimed only at studios is a weak visa plan at every school, including CMU.",
     search: { ids: "berkeley,cmu,uw", cat: "indices" as const },
     cta: "Compare visa priors",
   },
