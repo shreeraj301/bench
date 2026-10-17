@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/shell";
+import { Glossary } from "@/components/glossary";
 import { INDEX_META } from "@/data/programs";
 
 export const Route = createFileRoute("/framework")({
@@ -46,6 +47,9 @@ function FrameworkPage() {
       <article className="mx-auto w-full max-w-page px-5 py-14 md:px-8 md:py-20">
         <p className="eyebrow">Decision framework</p>
         <h1 className="display-lg mt-3 max-w-3xl">Weight the indices against a life, not against a ranking.</h1>
+        <div className="mt-8 max-w-3xl">
+          <Glossary compact />
+        </div>
         <p className="mt-5 max-w-2xl text-lg">
           The working rank on the homepage is for a product-design move, from India, with tuition that has
           to be survived. If that is not you, change the weights. The scores will not be offended.

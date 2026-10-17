@@ -1,13 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { useEffect, useState, type KeyboardEvent } from "react";
-import { Kind, Score, toneClasses } from "@/components/bits";
+import { Kind, Score } from "@/components/bits";
+import { Glossary } from "@/components/glossary";
 import { Shell } from "@/components/shell";
 import {
   COMPARE_CATEGORIES,
   UPDATED,
   VISA_NOTE,
   isCategory,
+  isProgramId,
   parseIds,
   programs,
 } from "@/data/programs";
@@ -27,10 +29,36 @@ export const Route = createFileRoute("/compare")({
 function ComparePage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
+  const historyInvalid = useRouterState({
+    select: (state) => Boolean((state.location.state as { benchInvalid?: boolean } | undefined)?.benchInvalid),
+  });
   const selected = parseIds(search.ids);
   const cat = search.cat;
+  const [invalidNote, setInvalidNote] = useState(historyInvalid);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const rawIds = params.get("ids");
+    const rawCat = params.get("cat");
+    const parts = (rawIds ?? "")
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+    const badIds = parts.some((part) => !isProgramId(part)) || new Set(parts).size !== parts.length;
+    const badCat = Boolean(rawCat) && !isCategory(rawCat);
+    if (badIds || badCat) {
+      setInvalidNote(true);
+      navigate({
+        search: {
+          ids: parseIds(rawIds ?? "").join(","),
+          cat: isCategory(rawCat) ? (rawCat as CompareCategory) : "overview",
+        },
+        replace: true,
+        state: { benchInvalid: true } as never,
+      });
+      return;
+    }
+    if (historyInvalid) return;
     if (search.ids) {
       try {
         localStorage.setItem(STORAGE, search.ids);
@@ -45,7 +73,7 @@ function ComparePage() {
     } catch {
       /* ignore */
     }
-    // Restore once on entry when the URL has no selection.
+    // Restore once. Invalid values are rewritten before any saved selection is applied.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,8 +102,20 @@ function ComparePage() {
         <p className="eyebrow">Compare · 2 or 3 programs</p>
         <h1 className="display-lg mt-3">Put them next to each other.</h1>
         <p className="mt-4 max-w-2xl">
-          Same fields, no narrative padding. Share the URL. It already holds the selection.
+          Same fields, no narrative padding. Share the URL. It already holds the selection. Visa prior is a
+          planning range, not a score. Indices, future proof, job security, all-in sketch, holds, costs you, and
+          full freight are defined in the word list under a finished comparison.
         </p>
+        {invalidNote ? (
+          <p className="panel mt-6" role="status">
+            Some comparison settings were invalid, so the default view was restored.
+          </p>
+        ) : null}
+        {selected.length >= 3 ? (
+          <p id="compare-limit" className="mt-6 text-sm font-semibold text-ink" role="status">
+            Three is the maximum. Remove one to swap.
+          </p>
+        ) : null}
 
         <ul className="no-print mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((program) => {
@@ -87,10 +127,11 @@ function ComparePage() {
                   type="button"
                   aria-pressed={on}
                   disabled={disabled}
+                  aria-describedby={disabled ? "compare-limit" : undefined}
                   onClick={() => toggle(program.id)}
-                  className={`flex min-h-14 w-full items-center gap-3 rounded-card border px-4 py-3 text-left text-sm font-semibold text-ink ${
+                  className={`pick flex min-h-14 w-full items-center gap-3 rounded-card border px-4 py-3 text-left text-sm font-semibold text-ink ${
                     on ? "border-ink bg-surface" : "border-hairline bg-canvas"
-                  } disabled:opacity-50`}
+                  }`}
                 >
                   <span
                     aria-hidden
@@ -98,7 +139,10 @@ function ComparePage() {
                   >
                     {on ? <Check className="size-3" aria-hidden /> : null}
                   </span>
-                  {program.shortName}
+                  <span>
+                    {program.shortName}
+                    {on ? <span className="mt-0.5 block text-xs font-medium text-muted">Selected. Press to remove.</span> : null}
+                  </span>
                 </button>
               </li>
             );
@@ -107,8 +151,9 @@ function ComparePage() {
 
         {chosen.length < 2 ? (
           <p className="panel mt-8" role="status">
-            Select {2 - chosen.length === 1 ? "one more program" : "at least two programs"}. Three is the
-            maximum. A longer list stops being a decision.
+            {chosen.length === 1
+              ? "This is a start, not a comparison. Add one more program. The one you picked stays selected."
+              : "Select at least two programs. Three is the maximum. A longer list stops being a decision."}
           </p>
         ) : (
           <>
@@ -140,7 +185,12 @@ function ComparePage() {
             >
               <CategoryView programs={chosen} cat={cat} />
             </div>
-            <p className="mt-6 text-sm text-muted">Updated {UPDATED}. {VISA_NOTE}</p>
+            <p className="mt-6 text-sm text-muted">
+              City names are places, not scores. Updated {UPDATED}. {VISA_NOTE}
+            </p>
+            <div className="mt-6">
+              <Glossary compact />
+            </div>
           </>
         )}
       </div>
@@ -164,37 +214,78 @@ function onTabKey(event: KeyboardEvent<HTMLButtonElement>, current: CompareCateg
 }
 
 function ShareBar({ chosen, cat }: { chosen: Program[]; cat: CompareCategory }) {
-  const [notice, setNotice] = useState("");
-  const copy = async (text: string, message: string) => {
+  const [copied, setCopied] = useState<"" | "link" | "summary">("");
+  const [failed, setFailed] = useState<"" | "link" | "summary">("");
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = window.setTimeout(() => setCopied(""), 2000);
+    return () => window.clearTimeout(timer);
+  }, [copied]);
+
+  const copy = async (kind: "link" | "summary", text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      setNotice(message);
+      setFailed("");
+      setCopied(kind);
     } catch {
-      setNotice("Clipboard blocked. Copy the address bar.");
+      setCopied("");
+      setFailed(kind);
     }
   };
+
+  const live =
+    copied === "link"
+      ? "Link copied"
+      : copied === "summary"
+        ? "Summary copied"
+        : failed === "link"
+          ? "Could not copy the link"
+          : failed === "summary"
+            ? "Could not copy the summary"
+            : "";
+
   return (
     <div className="flex flex-wrap items-center gap-2">
       <button
         type="button"
-        className="btn btn-secondary"
-        onClick={() => copy(window.location.href, "Link copied")}
+        className="btn btn-secondary min-w-40"
+        aria-label="Copy link"
+        onClick={() => copy("link", window.location.href)}
       >
-        Copy link
+        {copied === "link" ? (
+          <>
+            <Check size={16} strokeWidth={2} aria-hidden /> Copied
+          </>
+        ) : (
+          "Copy link"
+        )}
       </button>
       <button
         type="button"
-        className="btn btn-secondary"
-        onClick={() => copy(summary(chosen, cat), "Summary copied")}
+        className="btn btn-secondary min-w-40"
+        aria-label="Copy summary"
+        onClick={() => copy("summary", summary(chosen, cat))}
       >
-        Copy summary
+        {copied === "summary" ? (
+          <>
+            <Check size={16} strokeWidth={2} aria-hidden /> Copied
+          </>
+        ) : (
+          "Copy summary"
+        )}
       </button>
       <button type="button" className="btn btn-secondary" onClick={() => window.print()}>
         Print
       </button>
-      <p className="text-sm text-muted" aria-live="polite">
-        {notice}
+      <p className="sr-only" aria-live="polite">
+        {live}
       </p>
+      {failed ? (
+        <p className="text-sm text-ink" role="status">
+          Clipboard blocked. Copy the address bar.
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -228,7 +319,7 @@ function CategoryView({ programs: rows, cat }: { programs: Program[]; cat: Compa
     <div className={`grid gap-4 ${rows.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
       {rows.map((program) => (
         <article key={program.id} className="panel h-full">
-          <p className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${toneClasses(program.tone)}`}>
+          <p className="inline-flex rounded-full border border-hairline bg-surface px-3 py-1 text-xs font-semibold text-ink">
             {program.city}
           </p>
           <h2 className="mt-3 text-xl font-semibold text-ink">{program.shortName}</h2>
@@ -251,6 +342,7 @@ function body(program: Program, cat: CompareCategory) {
         <p>{program.rankReason}</p>
         <div>
           <p className="font-semibold text-ink">Holds</p>
+          <p className="text-muted">Where it is strong for this decision.</p>
           <ul className="mt-1 list-disc space-y-1 pl-4">
             {program.excels.map((item) => (
               <li key={item}>{item}</li>
@@ -259,6 +351,7 @@ function body(program: Program, cat: CompareCategory) {
         </div>
         <div>
           <p className="font-semibold text-ink">Costs you</p>
+          <p className="text-muted">What you give up if you pick it.</p>
           <ul className="mt-1 list-disc space-y-1 pl-4">
             {program.tradeoffs.map((item) => (
               <li key={item}>{item}</li>

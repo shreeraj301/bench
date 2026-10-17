@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/shell";
+import { Glossary } from "@/components/glossary";
 import { INDEX_META, UPDATED, VISA_NOTE } from "@/data/programs";
 
 export const Route = createFileRoute("/methodology")({
@@ -13,6 +14,9 @@ function MethodologyPage() {
       <article className="mx-auto w-full max-w-page px-5 py-14 md:px-8 md:py-20">
         <p className="eyebrow">Methodology · updated {UPDATED}</p>
         <h1 className="display-lg mt-3 max-w-3xl">The scores are arguments with the numbers attached.</h1>
+        <div className="mt-8 max-w-3xl">
+          <Glossary compact />
+        </div>
         <div className="mt-5 max-w-2xl space-y-4">
           <p>
             Every index is relative to these six programs only. A 9 is not a universal grade. It means “near

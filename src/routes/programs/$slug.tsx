@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { OfficialLink, Related, Score, Sources, toneClasses, Kind } from "@/components/bits";
+import { Glossary } from "@/components/glossary";
 import { Shell } from "@/components/shell";
 import { UPDATED, getProgram } from "@/data/programs";
 
@@ -61,9 +62,13 @@ function ProgramPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <OfficialLink href={program.officialUrl} />
             <Link to="/compare" search={{ ids: program.id, cat: "overview" }} className="btn btn-secondary">
-              Compare this program
+              Start a comparison
             </Link>
           </div>
+          <p className="mt-4 max-w-xl text-sm text-body">
+            Visa prior is a planning range for OPT and for whether employers in that market sponsor. It is not
+            an admission rate. All-in sketch is tuition plus a living estimate, not an invoice.
+          </p>
         </div>
         <aside className={`feature-card lg:col-span-5 ${toneClasses(program.tone)}`}>
           <p className="text-xs font-semibold uppercase tracking-[0.14em] opacity-80">At a glance</p>
@@ -322,6 +327,9 @@ function ProgramPage() {
           </p>
           <div className="mt-4">
             <Sources program={program} />
+          </div>
+          <div className="mt-8">
+            <Glossary />
           </div>
           <div className="mt-8">
             <OfficialLink href={program.officialUrl} label={`Open ${program.university}`} />

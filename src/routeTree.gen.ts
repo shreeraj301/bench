@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as FrameworkRouteImport } from './routes/framework'
 import { Route as GuideRouteImport } from './routes/guide'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as ProgramsSlugRouteImport } from './routes/programs/$slug'
+import { Route as WorkBenchRouteImport } from './routes/work/bench'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -46,66 +53,85 @@ const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkBenchRoute = WorkBenchRouteImport.update({
+  id: '/work/bench',
+  path: '/work/bench',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/compare': typeof CompareRoute
   '/framework': typeof FrameworkRoute
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
+  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/compare': typeof CompareRoute
   '/framework': typeof FrameworkRoute
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
+  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/compare': typeof CompareRoute
   '/framework': typeof FrameworkRoute
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
+  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
     | '/compare'
     | '/framework'
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
+    | '/work/bench'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/compare'
     | '/framework'
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
+    | '/work/bench'
   id:
     | '__root__'
     | '/'
+    | '/$'
     | '/compare'
     | '/framework'
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
+    | '/work/bench'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   CompareRoute: typeof CompareRoute
   FrameworkRoute: typeof FrameworkRoute
   GuideRoute: typeof GuideRoute
   MethodologyRoute: typeof MethodologyRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
+  WorkBenchRoute: typeof WorkBenchRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -152,16 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/bench': {
+      id: '/work/bench'
+      path: '/work/bench'
+      fullPath: '/work/bench'
+      preLoaderRoute: typeof WorkBenchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   CompareRoute: CompareRoute,
   FrameworkRoute: FrameworkRoute,
   GuideRoute: GuideRoute,
   MethodologyRoute: MethodologyRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
+  WorkBenchRoute: WorkBenchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

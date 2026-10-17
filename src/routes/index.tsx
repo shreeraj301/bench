@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { useState } from "react";
 import { IndexTable, ProgramCard, toneClasses } from "@/components/bits";
+import { Glossary } from "@/components/glossary";
 import { Shell } from "@/components/shell";
 import { UPDATED, pathways, programs } from "@/data/programs";
 import type { ProgramId } from "@/data/types";
@@ -15,7 +16,7 @@ function Home() {
     <Shell>
       <section className="mx-auto grid w-full max-w-page items-end gap-10 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <p className="eyebrow">Working rank · product design from India</p>
+          <p className="eyebrow">Decision framework · product design from India</p>
           <h1 className="display-xl mt-4">Six programs. One decision that survives the brochure.</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-body">
             Carnegie Mellon, Georgia Tech, Berkeley, Washington, Michigan, and UT Austin: cost, outcomes,
@@ -26,13 +27,17 @@ function Home() {
               Compare CMU and UW
             </Link>
             <Link to="/framework" className="btn btn-secondary">
-              How to weigh this
+              Open the decision framework
             </Link>
           </div>
         </div>
         <aside className={`feature-card lg:col-span-5 ${toneClasses("teal")}`}>
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-on-dark-soft">
             Decision order, not a quality ladder
+          </p>
+          <p className="mt-3 text-sm text-on-dark-soft">
+            This order uses one weighting: product design, from India, on an F-1. Change the weighting in the
+            decision framework and the order can change. It does not say which school is better in the abstract.
           </p>
           <ol className="mt-5 space-y-3">
             {programs.map((program) => (
@@ -123,6 +128,11 @@ function Home() {
             actually asks for.
           </p>
         </div>
+        <p className="mt-4 max-w-3xl text-sm">
+          Visa prior is a planning range, not a score. Job security, future proof, and the other indices run
+          from 1 to 10 against these six only. Holds is where a program is strong for this decision. Costs you
+          is the trade. Full freight means published tuition, with no assumed scholarship.
+        </p>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {programs.map((program) => (
             <ProgramCard key={program.id} program={program} />
@@ -148,6 +158,9 @@ function Home() {
         <div className="mt-8">
           <IndexTable rows={programs} />
         </div>
+        <div className="mt-6">
+          <Glossary open />
+        </div>
       </section>
     </Shell>
   );
@@ -172,6 +185,11 @@ function CompareEntry() {
         <p className="mt-4 max-w-2xl">
           A meaningful comparison fits on one screen. Pick a pair or a trio. The link you get is the share.
         </p>
+        {selected.length >= 3 ? (
+          <p id="home-limit" className="mt-4 text-sm font-semibold text-ink" role="status">
+            Three is the maximum. Remove one to swap.
+          </p>
+        ) : null}
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((program) => {
             const on = selected.includes(program.id);
@@ -182,10 +200,11 @@ function CompareEntry() {
                   type="button"
                   aria-pressed={on}
                   disabled={disabled}
+                  aria-describedby={disabled ? "home-limit" : undefined}
                   onClick={() => toggle(program.id)}
-                  className={`flex min-h-14 w-full items-center gap-3 rounded-card border px-4 py-3 text-left ${
+                  className={`pick flex min-h-14 w-full items-center gap-3 rounded-card border px-4 py-3 text-left ${
                     on ? "border-ink bg-canvas" : "border-hairline bg-canvas"
-                  } disabled:opacity-50`}
+                  }`}
                 >
                   <span
                     aria-hidden

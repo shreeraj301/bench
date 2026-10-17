@@ -36,7 +36,7 @@ export const INDEX_META: {
   },
   {
     key: "jobSecurity",
-    label: "Job Security",
+    label: "Job security",
     definition:
       "Strength of a path into product design, UX research, or product management: brand, network, internship conversion, and where alumni actually land.",
     criteria: [

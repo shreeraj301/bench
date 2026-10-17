@@ -100,9 +100,9 @@
     cursor: pointer;
   }
   :focus-visible {
-    outline: 2px solid #f4f0e6;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px #0a0a0a;
+    outline: 2px solid var(--c-ink);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--c-canvas);
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -215,12 +215,36 @@
 .btn-on-color:hover {
   background-color: #fff;
 }
+.btn-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  flex: none;
+}
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  min-height: 1rem;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  overflow: visible;
+}
 .btn[disabled],
 .btn:disabled {
   background-color: var(--c-surface-strong);
   color: var(--c-muted);
   cursor: not-allowed;
   transform: none;
+}
+.pick[disabled],
+.pick:disabled {
+  background-color: var(--c-surface);
+  color: var(--c-ink);
+  border-style: dashed;
+  opacity: 1;
+  cursor: not-allowed;
 }
 
 .nav-link {
@@ -287,7 +311,7 @@
   align-items: center;
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -364,11 +388,30 @@ details.fold[open] > summary::after {
   .no-print {
     display: none !important;
   }
-  body {
-    background-color: white;
-    color: black;
+  html,
+  body,
+  main,
+  article,
+  section,
+  .panel,
+  .bg-canvas,
+  .bg-surface,
+  .bg-footer {
+    background: #fff !important;
+    color: #111 !important;
   }
-  .feature-card {
+  .text-ink,
+  .text-body,
+  .text-muted,
+  a,
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: #111 !important;
+  }
+  .feature-card,
+  .panel {
     break-inside: avoid;
   }
 }

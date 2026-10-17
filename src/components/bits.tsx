@@ -89,7 +89,7 @@ export function ProgramCard({ program }: { program: Program }) {
           Open brief
         </Link>
         <Link to="/compare" search={{ ids: program.id, cat: "overview" }} className="btn btn-on-color">
-          Compare
+          Start a comparison
         </Link>
       </div>
     </article>
