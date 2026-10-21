@@ -16,7 +16,6 @@ import { Route as FrameworkRouteImport } from './routes/framework'
 import { Route as GuideRouteImport } from './routes/guide'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as ProgramsSlugRouteImport } from './routes/programs/$slug'
-import { Route as WorkBenchRouteImport } from './routes/work/bench'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,11 +52,6 @@ const ProgramsSlugRoute = ProgramsSlugRouteImport.update({
   path: '/programs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkBenchRoute = WorkBenchRouteImport.update({
-  id: '/work/bench',
-  path: '/work/bench',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
-  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +70,6 @@ export interface FileRoutesByTo {
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
-  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +80,6 @@ export interface FileRoutesById {
   '/guide': typeof GuideRoute
   '/methodology': typeof MethodologyRoute
   '/programs/$slug': typeof ProgramsSlugRoute
-  '/work/bench': typeof WorkBenchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +91,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
-    | '/work/bench'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +100,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
-    | '/work/bench'
   id:
     | '__root__'
     | '/'
@@ -120,7 +109,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/methodology'
     | '/programs/$slug'
-    | '/work/bench'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +119,6 @@ export interface RootRouteChildren {
   GuideRoute: typeof GuideRoute
   MethodologyRoute: typeof MethodologyRoute
   ProgramsSlugRoute: typeof ProgramsSlugRoute
-  WorkBenchRoute: typeof WorkBenchRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,13 +172,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/bench': {
-      id: '/work/bench'
-      path: '/work/bench'
-      fullPath: '/work/bench'
-      preLoaderRoute: typeof WorkBenchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -203,7 +183,6 @@ const rootRouteChildren: RootRouteChildren = {
   GuideRoute: GuideRoute,
   MethodologyRoute: MethodologyRoute,
   ProgramsSlugRoute: ProgramsSlugRoute,
-  WorkBenchRoute: WorkBenchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

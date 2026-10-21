@@ -127,9 +127,6 @@ function SiteHeader() {
           <Link to="/methodology" className="nav-link">
             Methodology
           </Link>
-          <Link to="/work/bench" search={{ read: "full" }} className="nav-link">
-            Case study
-          </Link>
           <ThemeToggle />
         </nav>
         <div className="ml-auto flex items-center gap-2 xl:hidden">
@@ -179,9 +176,6 @@ function SiteHeader() {
             </Link>
             <Link to="/methodology" className="nav-link" onClick={closeMenu}>
               Methodology
-            </Link>
-            <Link to="/work/bench" search={{ read: "full" }} className="nav-link" onClick={closeMenu}>
-              Case study
             </Link>
           </div>
         </nav>
